@@ -23,6 +23,23 @@
 #include "kernel/hash.h"
 
 
+/*
+ +------------------------------------------------------------------------+
+ | Phalcon Framework                                                      |
+ +------------------------------------------------------------------------+
+ | Copyright (c) 2011-2015 Phalcon Team (http://www.phalconphp.com)       |
+ +------------------------------------------------------------------------+
+ | This source file is subject to the New BSD License that is bundled     |
+ | with this package in the file docs/LICENSE.txt.                        |
+ |                                                                        |
+ | If you did not receive a copy of the license and are unable to         |
+ | obtain it through the world-wide-web, please send an email             |
+ | to license@phalconphp.com so we can send you a copy immediately.       |
+ +------------------------------------------------------------------------+
+ | Authors: Andres Gutierrez <andres@phalconphp.com>                      |
+ |          Eduar Carvajal <eduar@phalconphp.com>                         |
+ +------------------------------------------------------------------------+
+ */
 /**
  * Phalcon\Cache\Backend\Redis
  *
@@ -125,9 +142,10 @@ PHP_METHOD(Phalcon_Cache_Backend_Redis, __construct) {
  */
 PHP_METHOD(Phalcon_Cache_Backend_Redis, _connect) {
 
+	zephir_nts_static zephir_fcall_cache_entry *_4 = NULL;
 	zend_bool _0, _1;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *options, *redis, *persistent, *success = NULL, *host, *port, *auth;
+	zval *options, *redis, *persistent, *success = NULL, *host, *port, *auth, *_2, *_3;
 
 	ZEPHIR_MM_GROW();
 
@@ -135,10 +153,8 @@ PHP_METHOD(Phalcon_Cache_Backend_Redis, _connect) {
 	zephir_read_property_this(&options, this_ptr, SL("_options"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(redis);
 	object_init_ex(redis, zephir_get_internal_ce(SS("redis") TSRMLS_CC));
-	if (zephir_has_constructor(redis TSRMLS_CC)) {
-		ZEPHIR_CALL_METHOD(NULL, redis, "__construct", NULL);
-		zephir_check_call_status();
-	}
+	ZEPHIR_CALL_METHOD(NULL, redis, "__construct", NULL);
+	zephir_check_call_status();
 	ZEPHIR_OBS_VAR(host);
 	_0 = !(zephir_array_isset_string_fetch(&host, options, SS("host"), 0 TSRMLS_CC));
 	if (!(_0)) {
@@ -162,7 +178,14 @@ PHP_METHOD(Phalcon_Cache_Backend_Redis, _connect) {
 		zephir_check_call_status();
 	}
 	if (!(zephir_is_true(success))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalcon_cache_exception_ce, "Cannot connect to Redisd server", "phalcon/cache/backend/redis.zep", 114);
+		ZEPHIR_INIT_VAR(_2);
+		object_init_ex(_2, phalcon_cache_exception_ce);
+		ZEPHIR_INIT_VAR(_3);
+		ZEPHIR_CONCAT_SVSV(_3, "Cannot connect to Redisd server test", host, " ", port);
+		ZEPHIR_CALL_METHOD(NULL, _2, "__construct", &_4, _3);
+		zephir_check_call_status();
+		zephir_throw_exception_debug(_2, "phalcon/cache/backend/redis.zep", 114 TSRMLS_CC);
+		ZEPHIR_MM_RESTORE();
 		return;
 	}
 	ZEPHIR_OBS_VAR(auth);

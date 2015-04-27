@@ -24,6 +24,24 @@
 #include "kernel/concat.h"
 
 
+/*
+ +------------------------------------------------------------------------+
+ | Phalcon Framework                                                      |
+ +------------------------------------------------------------------------+
+ | Copyright (c) 2011-2015 Phalcon Team (http://www.phalconphp.com)       |
+ +------------------------------------------------------------------------+
+ | This source file is subject to the New BSD License that is bundled     |
+ | with this package in the file docs/LICENSE.txt.                        |
+ |                                                                        |
+ | If you did not receive a copy of the license and are unable to         |
+ | obtain it through the world-wide-web, please send an email             |
+ | to license@phalconphp.com so we can send you a copy immediately.       |
+ +------------------------------------------------------------------------+
+ | Authors: Andres Gutierrez <andres@phalconphp.com>                      |
+ |          Eduar Carvajal <eduar@phalconphp.com>                         |
+ |          Kenji Minamoto <kenji.minamoto@gmail.com>                     |
+ +------------------------------------------------------------------------+
+ */
 /**
  * Phalcon\Mvc\Collection
  *
@@ -144,8 +162,10 @@ PHP_METHOD(Phalcon_Mvc_Collection, setId) {
 		if (zephir_is_true(_1)) {
 			ZEPHIR_INIT_VAR(mongoId);
 			object_init_ex(mongoId, zephir_get_internal_ce(SS("mongoid") TSRMLS_CC));
-			ZEPHIR_CALL_METHOD(NULL, mongoId, "__construct", NULL, id);
-			zephir_check_call_status();
+			if (zephir_has_constructor(mongoId TSRMLS_CC)) {
+				ZEPHIR_CALL_METHOD(NULL, mongoId, "__construct", NULL, id);
+				zephir_check_call_status();
+			}
 		} else {
 			ZEPHIR_CPY_WRT(mongoId, id);
 		}
@@ -1097,8 +1117,10 @@ PHP_METHOD(Phalcon_Mvc_Collection, _exists) {
 			if (zephir_is_true(_1)) {
 				ZEPHIR_INIT_NVAR(mongoId);
 				object_init_ex(mongoId, zephir_get_internal_ce(SS("mongoid") TSRMLS_CC));
-				ZEPHIR_CALL_METHOD(NULL, mongoId, "__construct", NULL, id);
-				zephir_check_call_status();
+				if (zephir_has_constructor(mongoId TSRMLS_CC)) {
+					ZEPHIR_CALL_METHOD(NULL, mongoId, "__construct", NULL, id);
+					zephir_check_call_status();
+				}
 				zephir_update_property_this(this_ptr, SL("_id"), mongoId TSRMLS_CC);
 			} else {
 				ZEPHIR_CPY_WRT(mongoId, id);
@@ -1310,8 +1332,10 @@ PHP_METHOD(Phalcon_Mvc_Collection, findById) {
 		if (zephir_is_true(_3)) {
 			ZEPHIR_INIT_VAR(mongoId);
 			object_init_ex(mongoId, zephir_get_internal_ce(SS("mongoid") TSRMLS_CC));
-			ZEPHIR_CALL_METHOD(NULL, mongoId, "__construct", NULL, id);
-			zephir_check_call_status();
+			if (zephir_has_constructor(mongoId TSRMLS_CC)) {
+				ZEPHIR_CALL_METHOD(NULL, mongoId, "__construct", NULL, id);
+				zephir_check_call_status();
+			}
 		} else {
 			ZEPHIR_CPY_WRT(mongoId, id);
 		}
@@ -1713,8 +1737,10 @@ PHP_METHOD(Phalcon_Mvc_Collection, delete) {
 		if (zephir_is_true(_0)) {
 			ZEPHIR_INIT_NVAR(mongoId);
 			object_init_ex(mongoId, zephir_get_internal_ce(SS("mongoid") TSRMLS_CC));
-			ZEPHIR_CALL_METHOD(NULL, mongoId, "__construct", NULL, id);
-			zephir_check_call_status();
+			if (zephir_has_constructor(mongoId TSRMLS_CC)) {
+				ZEPHIR_CALL_METHOD(NULL, mongoId, "__construct", NULL, id);
+				zephir_check_call_status();
+			}
 		} else {
 			ZEPHIR_CPY_WRT(mongoId, id);
 		}

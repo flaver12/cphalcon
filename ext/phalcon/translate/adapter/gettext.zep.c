@@ -24,6 +24,24 @@
 #include "kernel/array.h"
 
 
+/*
+ +------------------------------------------------------------------------+
+ | Phalcon Framework                                                      |
+ +------------------------------------------------------------------------+
+ | Copyright (c) 2011-2015 Phalcon Team (http://www.phalconphp.com)       |
+ +------------------------------------------------------------------------+
+ | This source file is subject to the New BSD License that is bundled     |
+ | with this package in the file docs/LICENSE.txt.                        |
+ |                                                                        |
+ | If you did not receive a copy of the license and are unable to         |
+ | obtain it through the world-wide-web, please send an email             |
+ | to license@phalconphp.com so we can send you a copy immediately.       |
+ +------------------------------------------------------------------------+
+ | Authors: Andres Gutierrez <andres@phalconphp.com>                      |
+ |          Eduar Carvajal <eduar@phalconphp.com>                         |
+ |          Stanislav Kiryukhin <korsar.zn@gmail.com>                     |
+ +------------------------------------------------------------------------+
+ */
 /**
  * Class Gettext
  *
@@ -183,7 +201,7 @@ PHP_METHOD(Phalcon_Translate_Adapter_Gettext, exists) {
 PHP_METHOD(Phalcon_Translate_Adapter_Gettext, nquery) {
 
 	int count, ZEPHIR_LAST_CALL_STATUS;
-	zval *msgid1_param = NULL, *msgid2_param = NULL, *count_param = NULL, *placeholders = NULL, *domain_param = NULL, *translation = NULL, *_0 = NULL;
+	zval *msgid1_param = NULL, *msgid2_param = NULL, *count_param = NULL, *placeholders = NULL, *domain_param = NULL, *translation = NULL, _0 = zval_used_for_init;
 	zval *msgid1 = NULL, *msgid2 = NULL, *domain = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -239,14 +257,14 @@ PHP_METHOD(Phalcon_Translate_Adapter_Gettext, nquery) {
 
 
 	if (!(domain && Z_STRLEN_P(domain))) {
-		ZEPHIR_INIT_VAR(_0);
-		ZVAL_LONG(_0, count);
-		ZEPHIR_CALL_FUNCTION(&translation, "ngettext", NULL, msgid1, msgid2, _0);
+		ZEPHIR_SINIT_VAR(_0);
+		ZVAL_LONG(&_0, count);
+		ZEPHIR_CALL_FUNCTION(&translation, "ngettext", NULL, msgid1, msgid2, &_0);
 		zephir_check_call_status();
 	} else {
-		ZEPHIR_INIT_NVAR(_0);
-		ZVAL_LONG(_0, count);
-		ZEPHIR_CALL_FUNCTION(&translation, "dngettext", NULL, domain, msgid1, msgid2, _0);
+		ZEPHIR_SINIT_NVAR(_0);
+		ZVAL_LONG(&_0, count);
+		ZEPHIR_CALL_FUNCTION(&translation, "dngettext", NULL, domain, msgid1, msgid2, &_0);
 		zephir_check_call_status();
 	}
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "replaceplaceholders", NULL, translation, placeholders);
@@ -364,9 +382,10 @@ PHP_METHOD(Phalcon_Translate_Adapter_Gettext, getDefaultDomain) {
 PHP_METHOD(Phalcon_Translate_Adapter_Gettext, setDirectory) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
+	zephir_fcall_cache_entry *_3 = NULL;
 	HashTable *_1;
 	HashPosition _0;
-	zval *directory, *key = NULL, *value = NULL, **_2, *_3 = NULL;
+	zval *directory, *key = NULL, *value = NULL, **_2, *_4 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &directory);
@@ -383,14 +402,14 @@ PHP_METHOD(Phalcon_Translate_Adapter_Gettext, setDirectory) {
 			) {
 				ZEPHIR_GET_HMKEY(key, _1, _0);
 				ZEPHIR_GET_HVALUE(value, _2);
-				ZEPHIR_CALL_FUNCTION(NULL, "bindtextdomain", NULL, key, value);
+				ZEPHIR_CALL_FUNCTION(NULL, "bindtextdomain", &_3, key, value);
 				zephir_check_call_status();
 			}
 		}
 	} else {
-		ZEPHIR_CALL_METHOD(&_3, this_ptr, "getdefaultdomain", NULL);
+		ZEPHIR_CALL_METHOD(&_4, this_ptr, "getdefaultdomain", NULL);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(NULL, "bindtextdomain", NULL, _3, directory);
+		ZEPHIR_CALL_FUNCTION(NULL, "bindtextdomain", &_3, _4, directory);
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();

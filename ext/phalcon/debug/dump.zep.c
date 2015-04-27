@@ -24,6 +24,23 @@
 #include "kernel/string.h"
 
 
+/*
+ +------------------------------------------------------------------------+
+ | Phalcon Framework                                                      |
+ +------------------------------------------------------------------------+
+ | Copyright (c) 2011-2015 Phalcon Team (http://www.phalconphp.com)       |
+ +------------------------------------------------------------------------+
+ | This source file is subject to the New BSD License that is bundled     |
+ | with this package in the file docs/LICENSE.txt.                        |
+ |                                                                        |
+ | If you did not receive a copy of the license and are unable to         |
+ | obtain it through the world-wide-web, please send an email             |
+ | to license@phalconphp.com so we can send you a copy immediately.       |
+ +------------------------------------------------------------------------+
+ | Authors: Andres Gutierrez <andres@phalconphp.com>                      |
+ |          Eduar Carvajal <eduar@phalconphp.com>                         |
+ +------------------------------------------------------------------------+
+ */
 /**
  * Phalcon\Debug\Dump
  *
@@ -261,8 +278,8 @@ PHP_METHOD(Phalcon_Debug_Dump, output) {
 	zend_bool _15, _16, _17;
 	HashTable *_8, *_25, *_37;
 	HashPosition _7, _24, _36;
-	zephir_nts_static zephir_fcall_cache_entry *_6 = NULL, *_11 = NULL, *_19 = NULL, *_21 = NULL, *_23 = NULL, *_29 = NULL, *_30 = NULL, *_31 = NULL, *_33 = NULL, *_34 = NULL, *_42 = NULL, *_44 = NULL, *_45 = NULL;
-	zephir_fcall_cache_entry *_4 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_6 = NULL, *_11 = NULL, *_21 = NULL, *_23 = NULL, *_29 = NULL, *_30 = NULL, *_31 = NULL, *_33 = NULL, *_34 = NULL, *_42 = NULL, *_44 = NULL, *_45 = NULL;
+	zephir_fcall_cache_entry *_4 = NULL, *_19 = NULL;
 	zval *_1 = NULL, *_12 = NULL, *_40 = NULL;
 	int tab, ZEPHIR_LAST_CALL_STATUS;
 	zval *name = NULL, *_0;
