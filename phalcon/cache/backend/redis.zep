@@ -111,7 +111,7 @@ class Redis extends Backend implements BackendInterface
 		}
 
 		if !success {
-			throw new Exception("Cannot connect to Redisd server test" + host + " " + port);
+			throw new Exception("Cannot connect to Redisd server test" . host . " " . port);
 		}
 
 		if fetch auth, options["auth"] {
